@@ -133,7 +133,11 @@
 			<artifactId>google-maps-services</artifactId>
 			<version>0.1.20</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver-core</artifactId>
+			<version>3.4.2</version>
+		</dependency>
 
 
 	</dependencies>
