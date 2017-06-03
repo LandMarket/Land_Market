@@ -48,6 +48,9 @@ public class RegisterController {
         String str = utility.hashPassword(seller.getPassword());
         seller.setPassword(str);
 
+       // seller.setLogin(adressStr);
+        sellerController.save(seller);
+
 
         return new ResponseEntity<>("{\"token\":" + "\"" + utility.buildJwts(seller.getLogin()) + "\"}", HttpStatus.OK);
     }
@@ -73,6 +76,8 @@ public class RegisterController {
                 land.setLongitude(0);
             }
         }
+
+             landController.save(land);
 
         return new ResponseEntity<>("{\"token\":" + "\"" + utility.buildJwts(land.getOwner()) + "\"}", HttpStatus.OK);
     }
