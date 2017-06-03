@@ -33,8 +33,9 @@ public class RegisterController {
     public RegisterController(SellerController sellerController, IUtility utility, LandController landController) {
         this.sellerController = sellerController;
         this.utility = utility;
-        this.landController=landController;
+        this.landController = landController;
     }
+
     @PostMapping("/seller")
     public ResponseEntity<Object> registerSeller(@RequestBody Seller seller) throws ServletException {
 

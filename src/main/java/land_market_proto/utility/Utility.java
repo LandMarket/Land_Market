@@ -8,6 +8,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * Created by Nik_NB on 02.06.2017.
  */
@@ -18,6 +20,8 @@ public class Utility implements IUtility {
     public String buildJwts(String login) {
         return Jwts.builder().
                 setSubject(login).
+                claim("roles", "user")
+                .setIssuedAt(new Date()).
                 signWith(SignatureAlgorithm.HS256, "hfjgjkbghj34986u834932009fj").compact();
     }
 

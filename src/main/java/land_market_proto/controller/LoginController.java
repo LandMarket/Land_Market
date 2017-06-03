@@ -27,7 +27,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login1(@RequestBody SelletAuthType authType) {
+    public ResponseEntity<Object> login(@RequestBody SelletAuthType authType) {
 
         if (authType == null || authType.getLogin() == null || authType.getPassword() == null) {
             return new ResponseEntity<>("Error, there is no auth info", HttpStatus.UNAUTHORIZED);

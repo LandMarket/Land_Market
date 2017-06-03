@@ -31,6 +31,7 @@ public class SellerController1 {
         this.sellerController = sellerController;
         this.utility = utility;
     }
+
     @PutMapping("update")
     public ResponseEntity<Object> updateSeller(@RequestHeader("Authorization") String token, @RequestBody Seller seller) {
         String login = utility.parseJwts(token);
