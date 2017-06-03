@@ -8,7 +8,7 @@ import org.springframework.data.annotation.Id;
 public class Seller {
 
    // @Id
-    private String id;
+   // private String id;
 
 
     //@Field("login")
@@ -56,13 +56,13 @@ public class Seller {
 //        this.password = password;
 //    }
 
-    public Seller(String login, String email, String password,  String confirm) {
-
-        this.login = login;
-        this.email = email;
-        this.password = password;
-        this.confirm = confirm;
-    }
+//    public Seller(String login, String email, String password,  String confirm) {
+//
+//        this.login = login;
+//        this.email = email;
+//        this.password = password;
+//        this.confirm = confirm;
+//    }
 
 
 //    public Seller(String login, String password) {
@@ -70,13 +70,13 @@ public class Seller {
 //        this.password = password;
 //    }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
 //    public String getPassport() {
 //        return passport;

@@ -16,7 +16,9 @@ public class Utility implements IUtility {
 
     @Override
     public String buildJwts(String login) {
-        return Jwts.builder().setSubject(login).signWith(SignatureAlgorithm.HS256, "hfjgjkbghj34986u834932009fj").compact();
+        return Jwts.builder().
+                setSubject(login).
+                signWith(SignatureAlgorithm.HS256, "hfjgjkbghj34986u834932009fj").compact();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class Utility implements IUtility {
     public Boolean isLoginExist(Object obj) {
         if(obj instanceof Seller) {
             Seller seller = (Seller) obj;
-            if(seller.getLogin().equals("") || seller.getLogin() == null) {
+            if(seller.getLogin().equals("") || seller.getLogin() == null || seller.getPassword().equals("") || seller.getPassword() == null) {
                 return true;
             }
         }

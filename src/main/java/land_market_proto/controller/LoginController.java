@@ -27,21 +27,24 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody SelletAuthType authType){
+    public ResponseEntity<Object> login1(@RequestBody SelletAuthType authType) {
+
         if (authType == null || authType.getLogin() == null || authType.getPassword() == null) {
             return new ResponseEntity<>("Error, there is no auth info", HttpStatus.UNAUTHORIZED);
         }
         if (authType.getLogin().equals("") || authType.getPassword().equals("")) {
             return new ResponseEntity<>("Please fill in username and password", HttpStatus.UNAUTHORIZED);
-        } else if (sellerController.findByLogin(authType.getLogin()) != null){
-            Seller seller = sellerController.findByLogin(authType.getPassword());
+        } else if (sellerController.findByLogin(authType.getLogin()) != null) {
+            Seller seller = sellerController.findByLogin(authType.getLogin());
             if (!utility.isPasswordCorrect(authType.getPassword(), seller.getPassword())) {
                 return new ResponseEntity<>("Wrong password", HttpStatus.UNAUTHORIZED);
             }
+
             return new ResponseEntity<>("{\"token\":" + "\"" + utility.buildJwts(seller.getLogin()) + "\"}", HttpStatus.OK);
+
         }
-        return new ResponseEntity<>("Please register",HttpStatus.UNAUTHORIZED);
-    }
+            return new ResponseEntity<>("Please register", HttpStatus.UNAUTHORIZED);
+        }
 
 
 }
