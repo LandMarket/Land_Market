@@ -7,12 +7,13 @@ import org.springframework.data.annotation.Id;
  */
 public class Seller {
 
-    @Id
+   // @Id
     private String id;
 
 
     //@Field("login")
     //@Indexed(unique = true)
+    @Id
     private String login;
     private String email;
     //@Field("password")

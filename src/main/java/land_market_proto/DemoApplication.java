@@ -17,7 +17,7 @@ public class DemoApplication {
 	public FilterRegistrationBean jwtFilter() {
 		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 		registrationBean.setFilter(new JwtFilter());
-		//registrationBean.addUrlPatterns("/service/*");
+		registrationBean.addUrlPatterns("/service/*");
 		registrationBean.addUrlPatterns("/land/*");
 		registrationBean.addUrlPatterns("/seller/*");
 		return registrationBean;
