@@ -61,18 +61,18 @@ public class LandController1 {
 
     }
 
-//    @PutMapping("service")
-//    public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody LandArray landArray) {
-//        String owner = utility.parseJwts(token);
-//
-//        Land land = landController.findByOwner(owner);
-//        if (land == null) {
-//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-//        }
-//        //a(landArray);
-//        landController.save(land);
-//        return new ResponseEntity<>("Land was added", HttpStatus.OK);
-//    }
+    @PutMapping("service")
+    public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody LandArray landArray) {
+        String owner = utility.parseJwts(token);
+
+        Land land = landController.findByOwner(owner);
+        if (land == null) {
+            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        }
+        //a(landArray);
+        landController.save(land);
+        return new ResponseEntity<>("Land was added", HttpStatus.OK);
+    }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ResponseEntity<List<Land>> getAllMasters() {
