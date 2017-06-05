@@ -2,10 +2,13 @@ package land_market_proto.model;
 
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 /**
  * Created by Nik_NB on 02.06.2017.
  */
-public class Land {
+public class Land implements Serializable {
     private static final long serialVersionUID = 112234556L;
     double latitude;
     double longitude;
@@ -18,6 +21,7 @@ public class Land {
     private String price;
     private String description;
     private String address;
+ //  private ArrayList<LandArray> landArrays = new ArrayList<LandArray>();
     private String owner;
 
 
@@ -33,6 +37,24 @@ public class Land {
 //        this.address = address;
 //        this.owner = owner;
 //    }
+
+//    public ArrayList<address> getAddresses() {
+//        return addresses;
+//    }
+//
+//    public void setAddresses(ArrayList<address> addresses) {
+//        this.addresses = addresses;
+//    }
+
+
+//    public ArrayList<LandArray> getLandArrays() {
+//        return landArrays;
+//    }
+//
+//    public void setLandArrays(ArrayList<LandArray> landArrays) {
+//        this.landArrays = landArrays;
+//    }
+
     public double getLatitude() {
         return latitude;
     }

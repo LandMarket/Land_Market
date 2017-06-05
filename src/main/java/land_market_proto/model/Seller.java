@@ -56,13 +56,13 @@ public class Seller {
 //        this.password = password;
 //    }
 
-    public Seller(String login, String email, String password,  String confirm) {
-
-        this.login = login;
-        this.email = email;
-        this.password = password;
-        this.confirm = confirm;
-    }
+//    public Seller(String login, String email, String password,  String confirm) {
+//
+//        this.login = login;
+//        this.email = email;
+//        this.password = password;
+//        this.confirm = confirm;
+//    }
 
 
 //    public Seller(String login, String password) {

@@ -5,6 +5,7 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.Geometry;
 import land_market_proto.model.Land;
+import land_market_proto.model.LandArray;
 import land_market_proto.repository.LandController;
 import land_market_proto.utility.IUtility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,33 +46,33 @@ public class LandController1 {
 //        return new ResponseEntity<>(services, HttpStatus.OK);
 //    }
 
-//    @PostMapping("service")
-//    public ResponseEntity<Object> setMasterServices(@RequestHeader("Authorization") String token, @RequestBody ArrayList<Services> services) {
+    @PostMapping("service")
+    public ResponseEntity<Object> addownerland(@RequestHeader("Authorization") String token, @RequestBody ArrayList<Land> lands) {
+        String owner = utility.parseJwts(token);
+
+
+        Land land = landController.findByOwner(owner);
+        if (land == null) {
+            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        }
+      //  master.setSerivce(services);
+        landController.save(land);
+        return new ResponseEntity<>(" Land was added", HttpStatus.OK);
+
+    }
+
+//    @PutMapping("service")
+//    public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody LandArray landArray) {
 //        String owner = utility.parseJwts(token);
-//
 //
 //        Land land = landController.findByOwner(owner);
 //        if (land == null) {
 //            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
 //        }
-//      //  master.setSerivce(services);
+//        //a(landArray);
 //        landController.save(land);
-//        return new ResponseEntity<>("Master controller were updated", HttpStatus.OK);
-//
+//        return new ResponseEntity<>("Land was added", HttpStatus.OK);
 //    }
-
-    @PutMapping("service")
-    public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody Land land) {
-        String owner = utility.parseJwts(token);
-
-        Land land1 = landController.findByOwner(owner);
-        if (land1 == null) {
-            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-        }
-        //master.addServise(service);
-        landController.save(land);
-        return new ResponseEntity<>("Land was added", HttpStatus.OK);
-    }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ResponseEntity<List<Land>> getAllMasters() {
@@ -85,18 +86,18 @@ public class LandController1 {
         if (updateland == null) {
             return new ResponseEntity<>("owner doesn't exist", HttpStatus.CONFLICT);
         }
-        if (land.getArea() != null) {
-            updateland.setArea(land.getArea());
-        }
-        if (land.getAddress() != null) {
-            updateland.setAddress(land.getAddress());
-        }
-        if (land.getAssignment() != null) {
-            land.setAssignment(land.getAssignment());
-        }
-        if (land.getDescription() != null) {
-            land.setDescription(land.getDescription());
-        }
+//        if (land.getArea() != null) {
+//            updateland.setArea(land.getArea());
+//        }
+//        if (land.getAddress() != null) {
+//            updateland.setAddress(land.getAddress());
+//        }
+//        if (land.getAssignment() != null) {
+//            land.setAssignment(land.getAssignment());
+//        }
+//        if (land.getDescription() != null) {
+//            land.setDescription(land.getDescription());
+//        }
         GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCV43DMS9LJA9XaK10nY0I_sAGSxeDetlc");
         String adressStr = land.getAddress();
         GeocodingResult[] results = new GeocodingResult[0];
