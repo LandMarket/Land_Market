@@ -55,7 +55,7 @@ public class SellerController1 {
         return new ResponseEntity<>("Seller is updated", HttpStatus.OK);
     }
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public ResponseEntity<List<Seller>> getAllMasters() {
+    public ResponseEntity<List<Seller>> getListResponseEntity() {
         return new ResponseEntity<>(sellerController.findAll(), HttpStatus.OK);
     }
 

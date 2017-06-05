@@ -75,7 +75,7 @@ public class LandController1 {
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public ResponseEntity<List<Land>> getAllMasters() {
+    public ResponseEntity<List<Land>> getListResponseEntity() {
         return new ResponseEntity<>(landController.findAll(), HttpStatus.OK);
     }
     @PutMapping("update")
