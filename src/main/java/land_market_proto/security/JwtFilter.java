@@ -35,7 +35,7 @@ public class JwtFilter  extends GenericFilterBean {
 //                throw new ServletException("Missing or invalid Authorization header");
 //            }
 //
-//            final String token = authHeader;
+            final String token = authHeader;
 //
 //            try {
 //                final Claims claims = Jwts.parser().setSigningKey("hfjgjkbghj34986u834932009fj").parseClaimsJws(token).getBody();
