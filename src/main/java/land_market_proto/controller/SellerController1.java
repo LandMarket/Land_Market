@@ -4,6 +4,7 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.Geometry;
+import land_market_proto.model.Land;
 import land_market_proto.model.Seller;
 import land_market_proto.repository.SellerController;
 import land_market_proto.utility.IUtility;
@@ -58,6 +59,17 @@ public class SellerController1 {
     public ResponseEntity<List<Seller>> getAllSellers() {
         return new ResponseEntity<>(sellerController.findAll(), HttpStatus.OK);
     }
+    @PutMapping("delete")
+    public ResponseEntity<Object> deletland( @RequestBody Seller seller) {
+//        String owner = utility.parseJwts(token);
 
+//        Land land = landController.findByOwner(owner);
+//        if (land == null) {
+//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+//        }
+        //a(landArray);
+        sellerController.delete(seller);
+        return new ResponseEntity<>("Land was delete", HttpStatus.OK);
+    }
 
 }

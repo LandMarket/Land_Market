@@ -16,12 +16,12 @@ public class Land implements Serializable {
     @Id
     private String id;
 
-//    private String area;
-//    private String assignment;
-//    private String price;
-//    private String description;
+    private String area;
+    private String assignment;
+    private String price;
+   private String description;
     private String address;
-    private ArrayList<LandArray> landArrays = new ArrayList<LandArray>();
+  //  private ArrayList<LandArray> landArrays = new ArrayList<LandArray>();
     private String owner;
 
 
@@ -47,13 +47,13 @@ public class Land implements Serializable {
 //    }
 
 
-    public ArrayList<LandArray> getLandArrays() {
-        return landArrays;
-    }
-
-    public void setLandArrays(ArrayList<LandArray> landArrays) {
-        this.landArrays = landArrays;
-    }
+//    public ArrayList<LandArray> getLandArrays() {
+//        return landArrays;
+//    }
+//
+//    public void setLandArrays(ArrayList<LandArray> landArrays) {
+//        this.landArrays = landArrays;
+//    }
 
     public double getLatitude() {
         return latitude;
@@ -88,37 +88,37 @@ public class Land implements Serializable {
         this.id = id;
     }
 
-//    public String getArea() {
-//        return area;
-//    }
-//
-//    public void setArea(String area) {
-//        this.area = area;
-//    }
-//
-//    public String getAssignment() {
-//        return assignment;
-//    }
-//
-//    public void setAssignment(String assignment) {
-//        this.assignment = assignment;
-//    }
-//
-//    public String getPrice() {
-//        return price;
-//    }
-//
-//    public void setPrice(String price) {
-//        this.price = price;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(String assignment) {
+        this.assignment = assignment;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public String getAddress() {
         return address;

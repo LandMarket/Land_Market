@@ -46,38 +46,51 @@ public class LandController1 {
 //        return new ResponseEntity<>(services, HttpStatus.OK);
 //    }
 
-    @PostMapping("service")
-    public ResponseEntity<Object> addownerland(@RequestHeader("Authorization") String token, @RequestBody ArrayList<Land> lands) {
-        String owner = utility.parseJwts(token);
-
-
-        Land land = landController.findByOwner(owner);
-        if (land == null) {
-            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-        }
-      //  master.setSerivce(services);
-        landController.save(land);
-        return new ResponseEntity<>(" Land was added", HttpStatus.OK);
-
-    }
+//    @PostMapping("service")
+//    public ResponseEntity<Object> addownerland(@RequestHeader("Authorization") String token, @RequestBody ArrayList<Land> lands) {
+//        String owner = utility.parseJwts(token);
+//
+//
+//        Land land = landController.findByOwner(owner);
+//        if (land == null) {
+//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+//        }
+//      //  master.setSerivce(services);
+//        landController.save(land);
+//        return new ResponseEntity<>(" Land was added", HttpStatus.OK);
+//
+//    }
 
     @PutMapping("service")
-    public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody LandArray landArray) {
-        String owner = utility.parseJwts(token);
-
-        Land land = landController.findByOwner(owner);
-        if (land == null) {
-            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-        }
+    public ResponseEntity<Object> addland( @RequestBody Land land) {
+//        String owner = utility.parseJwts(token);
+//
+//        Land land = landController.findByOwner(owner);
+//        if (land == null) {
+//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+//        }
         //a(landArray);
         landController.save(land);
         return new ResponseEntity<>("Land was added", HttpStatus.OK);
+    }
+    @PutMapping("delete")
+    public ResponseEntity<Object> deletland( @RequestBody Land land) {
+//        String owner = utility.parseJwts(token);
+
+//        Land land = landController.findByOwner(owner);
+//        if (land == null) {
+//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+//        }
+        //a(landArray);
+        landController.delete(land);
+        return new ResponseEntity<>("Land was delete", HttpStatus.OK);
     }
 
     @RequestMapping(value = "lands", method = RequestMethod.GET)
     public ResponseEntity<List<Land>> getAllLands() {
         return new ResponseEntity<>(landController.findAll(), HttpStatus.OK);
     }
+
     @PutMapping("update")
     public ResponseEntity<Object> updateSeller(@RequestHeader("Authorization") String token, @RequestBody Land land) {
         String owner = utility.parseJwts(token);
