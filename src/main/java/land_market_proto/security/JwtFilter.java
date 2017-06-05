@@ -29,20 +29,20 @@ public class JwtFilter  extends GenericFilterBean {
             response.setStatus(HttpServletResponse.SC_OK);
 
             chain.doFilter(req, res);
-        } else {
-
-            if (authHeader == null /*|| !authHeader.startsWith("Bearer ")*/) {
-                throw new ServletException("Missing or invalid Authorization header");
-            }
-
-            final String token = authHeader;
-
-            try {
-                final Claims claims = Jwts.parser().setSigningKey("hfjgjkbghj34986u834932009fj").parseClaimsJws(token).getBody();
-                request.setAttribute("claims", claims);
-            } catch (final SignatureException e) {
-                throw new ServletException("Invalid token");
-            }
+//        } else {
+//
+//            if (authHeader == null /*|| !authHeader.startsWith("Bearer ")*/) {
+//                throw new ServletException("Missing or invalid Authorization header");
+//            }
+//
+//            final String token = authHeader;
+//
+//            try {
+//                final Claims claims = Jwts.parser().setSigningKey("hfjgjkbghj34986u834932009fj").parseClaimsJws(token).getBody();
+//                request.setAttribute("claims", claims);
+//            } catch (final SignatureException e) {
+//                throw new ServletException("Invalid token");
+//            }
 
             chain.doFilter(req, res);
         }

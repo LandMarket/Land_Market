@@ -74,8 +74,8 @@ public class LandController1 {
         return new ResponseEntity<>("Land was added", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "list", method = RequestMethod.GET)
-    public ResponseEntity<List<Land>> getListResponseEntity() {
+    @RequestMapping(value = "lands", method = RequestMethod.GET)
+    public ResponseEntity<List<Land>> getAllLands() {
         return new ResponseEntity<>(landController.findAll(), HttpStatus.OK);
     }
     @PutMapping("update")
