@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("land")
-public class LandController1 {
+public class LandController1{
 
     private final LandController landController;
     private final IUtility utility;
@@ -61,21 +61,21 @@ public class LandController1 {
 //
 //    }
 
-    @PutMapping("service")
-    public ResponseEntity<Object> addland( @RequestBody Land land) {
-//        String owner = utility.parseJwts(token);
-//
-//        Land land = landController.findByOwner(owner);
-//        if (land == null) {
-//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-//        }
+    @PutMapping("addland")
+    public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody Land land) {
+        String owner = utility.parseJwts(token);
+        Land lands = landController.findByOwner(owner);
+
+        if (lands == null) {
+            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        }
         //a(landArray);
         landController.save(land);
         return new ResponseEntity<>("Land was added", HttpStatus.OK);
     }
     @PutMapping("delete")
     public ResponseEntity<Object> deletland( @RequestBody Land land) {
-//        String owner = utility.parseJwts(token);
+///     String owner = utility.parseJwts(token);
 
 //        Land land = landController.findByOwner(owner);
 //        if (land == null) {
@@ -93,44 +93,47 @@ public class LandController1 {
 
     @PutMapping("update")
     public ResponseEntity<Object> updateSeller(@RequestHeader("Authorization") String token, @RequestBody Land land) {
-        String owner = utility.parseJwts(token);
+         String owner = utility.parseJwts(token);
         Land updateland = landController.findByOwner(owner);
 
-        if (updateland == null) {
-            return new ResponseEntity<>("owner doesn't exist", HttpStatus.CONFLICT);
-        }
+//        if (updateland == null) {
+//            return new ResponseEntity<>("owner doesn't exist", HttpStatus.CONFLICT);
+//        }
 //        if (land.getArea() != null) {
 //            updateland.setArea(land.getArea());
 //        }
 //        if (land.getAddress() != null) {
 //            updateland.setAddress(land.getAddress());
 //        }
-//        if (land.getAssignment() != null) {
-//            land.setAssignment(land.getAssignment());
-//        }
-//        if (land.getDescription() != null) {
-//            land.setDescription(land.getDescription());
-//        }
-        GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCV43DMS9LJA9XaK10nY0I_sAGSxeDetlc");
-        String adressStr = land.getAddress();
-        GeocodingResult[] results = new GeocodingResult[0];
-        if (adressStr != null) {
-            try {
-                results = GeocodingApi.geocode(context, adressStr).await();
-                Geometry geometry = results[0].geometry;
-                updateland.setPlaceId(results[0].placeId);
-                updateland.setLatitude(geometry.location.lat);
-                updateland.setLongitude(geometry.location.lng);
-                updateland.setAddress(adressStr);
-            } catch (Exception e) {
-                updateland.setPlaceId(null);
-                updateland.setLatitude(0);
-                updateland.setLongitude(0);
-            }
+        if (land.getAssignment() != null) {
+            updateland.setAssignment(land.getAssignment());
         }
+        if (land.getDescription() != null) {
+            updateland.setDescription(land.getDescription());
+        }
+        if(land.getPrice()!=null) {
+            updateland.setPrice(land.getPrice());
+        }
+//        GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCV43DMS9LJA9XaK10nY0I_sAGSxeDetlc");
+//        String adressStr = land.getAddress();
+//        GeocodingResult[] results = new GeocodingResult[0];
+//        if (adressStr != null) {
+//            try {
+//                results = GeocodingApi.geocode(context, adressStr).await();
+//                Geometry geometry = results[0].geometry;
+//                updateland.setPlaceId(results[0].placeId);
+//                updateland.setLatitude(geometry.location.lat);
+//                updateland.setLongitude(geometry.location.lng);
+//                updateland.setAddress(adressStr);
+//            } catch (Exception e) {
+//                updateland.setPlaceId(null);
+//                updateland.setLatitude(0);
+//                updateland.setLongitude(0);
+//            }
+
 
         landController.save(updateland);
 
-        return new ResponseEntity<>("Owner is updated", HttpStatus.OK);
+        return new ResponseEntity<>("Land is updated", HttpStatus.OK);
     }
 }

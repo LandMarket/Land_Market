@@ -20,15 +20,15 @@ public class Seller {
     private String password;
     private String confirm;
     //@Field("email")
-    //private String email;
+    // private String email;
     //@Field("confirm")
     //private String confirm;
     //@Field("passport")
-//    private String passport;
+    private String passport;
 //    //@Field("companyName")
 //    private String companyName;
 //    //@Field("phone")
-//    private String phone;
+      private String phone;
 //   //@Field("address")
 //    private String address;
     //@Field("email")
@@ -47,9 +47,9 @@ public class Seller {
 //        this.password = password;
 //        this.passport = passport;
 //        this.companyName = companyName;
-//        this.phone = phone;
-//        this.address = address;
-//        this.email = email;
+      //  this.phone = phone;
+ //       this.address = address;
+      //  this.email = email;
 //        this.managerName = managerName;
 //        this.skype = skype;
 //        this.login = login;
@@ -78,13 +78,13 @@ public class Seller {
 //        this.id = id;
 //    }
 
-//    public String getPassport() {
-//        return passport;
-//    }
-//
-//    public void setPassport(String passport) {
-//        this.passport = passport;
-//    }
+    public String getPassport() {
+        return passport;
+    }
+
+    public void setPassport(String passport) {
+        this.passport = passport;
+    }
 //
 //    public String getCompanyName() {
 //        return companyName;
@@ -94,14 +94,14 @@ public class Seller {
 //        this.companyName = companyName;
 //    }
 
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
-//
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
 //    public String getAddress() {
 //        return address;
 //    }

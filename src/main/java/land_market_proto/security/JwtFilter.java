@@ -29,13 +29,12 @@ public class JwtFilter  extends GenericFilterBean {
             response.setStatus(HttpServletResponse.SC_OK);
 
             chain.doFilter(req, res);
-        }
-// else {
-//
-//            if (authHeader == null /*|| !authHeader.startsWith("Bearer ")*/) {
-//                throw new ServletException("Missing or invalid Authorization header");
-//            }
-//
+        } else {
+
+            if (authHeader == null /*|| !authHeader.startsWith("Bearer ")*/) {
+                throw new ServletException("Missing or invalid Authorization header");
+            }
+
             final String token = authHeader;
 //
 //            try {
@@ -48,4 +47,5 @@ public class JwtFilter  extends GenericFilterBean {
             chain.doFilter(req, res);
         }
     }
+}
 

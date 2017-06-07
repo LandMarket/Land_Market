@@ -38,20 +38,25 @@ public class SellerController1 {
         String login = utility.parseJwts(token);
         Seller updatedSeller = sellerController.findByLogin(login);
 
-        if (updatedSeller == null) {
-            return new ResponseEntity<>("seller doesn't exist", HttpStatus.CONFLICT);
-        }
+//        if (updatedSeller == null) {
+//            return new ResponseEntity<>("seller doesn't exist", HttpStatus.CONFLICT);
+//        }
         if (seller.getEmail() != null) {
             updatedSeller.setEmail(seller.getEmail());
         }
         if (seller.getPassword() != null) {
-            seller.setPassword(seller.getPassword());
+            updatedSeller.setPassword(seller.getPassword());
         }
         if (seller.getConfirm() != null) {
-            seller.setConfirm(seller.getConfirm());
+            updatedSeller.setConfirm(seller.getConfirm());
         }
-
-        sellerController.save(updatedSeller);
+          if(seller.getPhone()!=null){
+         updatedSeller.setPhone(seller.getPhone());
+        }
+        if(seller.getPassport()!=null){
+            updatedSeller.setPassport(seller.getPassport());
+        }
+        sellerController.save(seller);
 
         return new ResponseEntity<>("Seller is updated", HttpStatus.OK);
     }
@@ -60,16 +65,15 @@ public class SellerController1 {
         return new ResponseEntity<>(sellerController.findAll(), HttpStatus.OK);
     }
     @PutMapping("delete")
-    public ResponseEntity<Object> deletland( @RequestBody Seller seller) {
-//        String owner = utility.parseJwts(token);
-
-//        Land land = landController.findByOwner(owner);
-//        if (land == null) {
-//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-//        }
+    public ResponseEntity<Object> deletland( @RequestHeader("Authorization") String token, @RequestBody Seller seller) {
+        String login = utility.parseJwts(token);
+        Seller seller1 = sellerController.findByLogin(login);
+        if (seller == null) {
+            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        }
         //a(landArray);
         sellerController.delete(seller);
-        return new ResponseEntity<>("Land was delete", HttpStatus.OK);
+        return new ResponseEntity<>("Seller was delete", HttpStatus.OK);
     }
 
 }
