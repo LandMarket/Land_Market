@@ -74,13 +74,13 @@ public class LandController1{
         return new ResponseEntity<>("Land was added", HttpStatus.OK);
     }
     @PutMapping("delete")
-    public ResponseEntity<Object> deletland( @RequestBody Land land) {
-///     String owner = utility.parseJwts(token);
+    public ResponseEntity<Object> deletland( @RequestHeader("Authorization") String token,@RequestBody Land land) {
+    String owner = utility.parseJwts(token);
 
-//        Land land = landController.findByOwner(owner);
-//        if (land == null) {
-//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-//        }
+        Land land1 = landController.findByOwner(owner);
+        if (land == null) {
+            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        }
         //a(landArray);
         landController.delete(land);
         return new ResponseEntity<>("Land was delete", HttpStatus.OK);
