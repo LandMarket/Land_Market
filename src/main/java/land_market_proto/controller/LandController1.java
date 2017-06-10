@@ -46,20 +46,7 @@ public class LandController1{
 //        return new ResponseEntity<>(services, HttpStatus.OK);
 //    }
 
-//    @PostMapping("service")
-//    public ResponseEntity<Object> addownerland(@RequestHeader("Authorization") String token, @RequestBody ArrayList<Land> lands) {
-//        String owner = utility.parseJwts(token);
-//
-//
-//        Land land = landController.findByOwner(owner);
-//        if (land == null) {
-//            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
-//        }
-//      //  master.setSerivce(services);
-//        landController.save(land);
-//        return new ResponseEntity<>(" Land was added", HttpStatus.OK);
-//
-//    }
+
 
     @PutMapping("addland")
     public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody Land land) {
@@ -135,5 +122,14 @@ public class LandController1{
         landController.save(updateland);
 
         return new ResponseEntity<>("Land is updated", HttpStatus.OK);
+    }
+    @GetMapping("infoland")
+    public ResponseEntity<Object> getLandInfo(@RequestHeader("Authorization") String token) {
+        String owner = utility.parseJwts(token);
+        Land land = landController.findByOwner(owner);
+        if (owner == null) {
+            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(owner, HttpStatus.OK);
     }
 }

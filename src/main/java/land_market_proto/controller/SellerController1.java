@@ -75,5 +75,14 @@ public class SellerController1 {
         sellerController.delete(seller);
         return new ResponseEntity<>("Seller was delete", HttpStatus.OK);
     }
+    @GetMapping("infoseller")
+    public ResponseEntity<Object> getSellerInfo(@RequestHeader("Authorization") String token) {
+        String login = utility.parseJwts(token);
+        Seller seller = sellerController.findByLogin(login);
+        if (seller == null) {
+            return new ResponseEntity<>("there is no such seller", HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(seller, HttpStatus.OK);
+    }
 
 }
