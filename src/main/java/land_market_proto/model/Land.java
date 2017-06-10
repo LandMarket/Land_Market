@@ -21,7 +21,7 @@ public class Land implements Serializable {
     private String price;
    private String description;
     private String address;
-  //  private ArrayList<LandArray> landArrays = new ArrayList<LandArray>();
+   //private ArrayList<LandArray> landArrays = new ArrayList<LandArray>();
     private String owner;
 
 
@@ -38,12 +38,12 @@ public class Land implements Serializable {
 //        this.owner = owner;
 //    }
 
-//    public ArrayList<address> getAddresses() {
-//        return addresses;
+//    public ArrayList<LandArray> getAddresses() {
+//        return landArrays;
 //    }
 //
-//    public void setAddresses(ArrayList<address> addresses) {
-//        this.addresses = addresses;
+//    public void setAddresses(ArrayList<LandArray> landArrays) {
+//        this.landArrays = landArrays;
 //    }
 
 

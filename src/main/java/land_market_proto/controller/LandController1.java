@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("land")
-public class LandController1{
+public class LandController1 {
 
     private final LandController landController;
     private final IUtility utility;
@@ -47,7 +47,6 @@ public class LandController1{
 //    }
 
 
-
     @PutMapping("addland")
     public ResponseEntity<Object> addland(@RequestHeader("Authorization") String token, @RequestBody Land land) {
         String owner = utility.parseJwts(token);
@@ -60,9 +59,10 @@ public class LandController1{
         landController.save(land);
         return new ResponseEntity<>("Land was added", HttpStatus.OK);
     }
+
     @PutMapping("delete")
-    public ResponseEntity<Object> deletland( @RequestHeader("Authorization") String token,@RequestBody Land land) {
-    String owner = utility.parseJwts(token);
+    public ResponseEntity<Object> deletland(@RequestHeader("Authorization") String token, @RequestBody Land land) {
+        String owner = utility.parseJwts(token);
 
         Land land1 = landController.findByOwner(owner);
         if (land == null) {
@@ -80,7 +80,7 @@ public class LandController1{
 
     @PutMapping("update")
     public ResponseEntity<Object> updateSeller(@RequestHeader("Authorization") String token, @RequestBody Land land) {
-         String owner = utility.parseJwts(token);
+        String owner = utility.parseJwts(token);
         Land updateland = landController.findByOwner(owner);
 
 //        if (updateland == null) {
@@ -98,7 +98,7 @@ public class LandController1{
         if (land.getDescription() != null) {
             updateland.setDescription(land.getDescription());
         }
-        if(land.getPrice()!=null) {
+        if (land.getPrice() != null) {
             updateland.setPrice(land.getPrice());
         }
 //        GeoApiContext context = new GeoApiContext().setApiKey("AIzaSyCV43DMS9LJA9XaK10nY0I_sAGSxeDetlc");
@@ -123,13 +123,17 @@ public class LandController1{
 
         return new ResponseEntity<>("Land is updated", HttpStatus.OK);
     }
-    @GetMapping("infoland")
-    public ResponseEntity<Object> getLandInfo(@RequestHeader("Authorization") String token) {
+
+    @GetMapping("sellerlands")
+    public ResponseEntity<List<Land>> getSellerLands(@RequestHeader("Authorization") String token) {
         String owner = utility.parseJwts(token);
-        Land land = landController.findByOwner(owner);
-        if (owner == null) {
-            return new ResponseEntity<>("there is no such owner", HttpStatus.CONFLICT);
+        ArrayList<Land> lands = new ArrayList<>();
+
+        for (Land land : landController.findAll()) {
+            if (owner.equals(land.getOwner())) {
+                lands.add(land);
+            }
         }
-        return new ResponseEntity<>(owner, HttpStatus.OK);
+        return new ResponseEntity<>(lands, HttpStatus.OK);
     }
 }
